@@ -593,6 +593,74 @@
             font-size: 0.9rem;
         }
 
+		/* Press Kit Section */
+		.press {
+		    padding: 6rem 2rem;
+		    background: var(--color-warm-white);
+		}
+		
+		.press-grid {
+		    display: grid;
+		    grid-template-columns: repeat(2, 1fr);
+		    gap: 2rem;
+		}
+		
+		.press-card {
+		    background: white;
+		    padding: 2rem;
+		    border-radius: 16px;
+		    border: 1px solid var(--color-border);
+		}
+		
+		.press-card h3 {
+		    font-family: var(--font-display);
+		    font-size: 1.15rem;
+		    font-weight: 600;
+		    margin-bottom: 1rem;
+		    color: var(--color-text);
+		}
+		
+		.press-card p {
+		    color: var(--color-text-muted);
+		    font-size: 0.95rem;
+		    line-height: 1.7;
+		}
+		
+		.fact-item {
+		    font-size: 0.95rem;
+		    color: var(--color-text-muted);
+		    margin-bottom: 0.5rem;
+		}
+		
+		.fact-item strong {
+		    color: var(--color-text);
+		}
+		
+		.press-card a {
+		    color: var(--color-accent);
+		    text-decoration: none;
+		}
+		
+		.press-card a:hover {
+		    text-decoration: underline;
+		}
+		
+		.press-contact {
+		    background: var(--color-accent-pale);
+		    border-color: transparent;
+		}
+		
+		.contact-note {
+		    font-size: 0.85rem !important;
+		    margin-top: 0.75rem;
+		}
+		
+		@media (max-width: 900px) {
+		    .press-grid {
+		        grid-template-columns: 1fr;
+		    }
+		}
+		
         /* Team Section */
         .team {
             padding: 6rem 2rem;
@@ -1056,6 +1124,45 @@
             </div>
         </div>
     </section>
+
+	<!-- Press Kit Section -->
+	<section id="press" class="press">
+	    <div class="section-container">
+	        <div class="section-header">
+	            <div class="section-label">Press Kit</div>
+	            <h2>Media resources</h2>
+	            <p class="section-description">Everything you need to cover Autism Advisor.</p>
+	        </div>
+	        <div class="press-grid">
+	            <div class="press-card">
+	                <h3>Boilerplate</h3>
+	                <p>Autism Advisor is an AI-powered iOS application that helps families understand and navigate complex special education documents such as Individualized Education Programs (IEPs). By combining generative AI with proprietary, state-specific legal knowledge graphs, Autism Advisor transforms dense educational and compliance language into clear, actionable, plain-language insights. The platform is designed to support families, advocates, and professionals in making more informed decisions—without replacing licensed educators, clinicians, or legal counsel.</p>
+	            </div>
+	            <div class="press-card">
+	                <h3>Quick Facts</h3>
+	                <div class="fact-item"><strong>Product:</strong> Autism Advisor (iOS)</div>
+	                <div class="fact-item"><strong>Category:</strong> Special education, health & accessibility technology</div>
+	                <div class="fact-item"><strong>Founded:</strong> 2025</div>
+	                <div class="fact-item"><strong>Team:</strong> Two student founders (sisters)</div>
+	                <div class="fact-item"><strong>Status:</strong> Live on the App Store, piloted with families in Southern California</div>
+	                <div class="fact-item"><strong>Languages:</strong> English, Spanish, Korean (more planned)</div>
+	                <div class="fact-item"><strong>Focus:</strong> Clarity, accessibility, and equity in special education</div>
+	            </div>
+	            <div class="press-card">
+	                <h3>Media Resources</h3>
+	                <div class="fact-item"><strong>Logo:</strong> <a href="#">Download (PNG)</a></div>
+	                <div class="fact-item"><strong>Product screenshots:</strong> <a href="#">Download (ZIP)</a></div>
+	                <div class="fact-item"><strong>One-pager:</strong> <a href="#">Download (PDF)</a></div>
+	                <div class="fact-item"><strong>Innovation video:</strong> <a href="#video">Watch</a></div>
+	            </div>
+	            <div class="press-card press-contact">
+	                <h3>Press Contact</h3>
+	                <p>Email: <a href="mailto:placeholder@example.com">placeholder@example.com</a></p>
+	                <p class="contact-note">For media, partnership, or judge inquiries. Please do not send sensitive or confidential information.</p>
+	            </div>
+	        </div>
+	    </div>
+	</section>
 
     <!-- Video Section -->
     <section id="video" class="video">
