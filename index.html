@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Autism Advisor — AI-powered clarity for special education documents. Conrad Challenge 2026 Innovation Stage submission website." />
+  <title>Autism Advisor | Conrad Challenge 2026</title>
+
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --panel: #0f1621;
+      --card: #121b27;
+      --text: #e7eef7;
+      --muted: #a9b6c6;
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --focus: 0 0 0 3px rgba(255,255,255,0.25);
+      --accent: #d7dde6; /* neutral */
+      --good: #86efac;   /* used sparingly for check icons */
+      --warn: #fde68a;   /* used sparingly for note callout */
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% 0%, #121a27 0%, var(--bg) 55%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: var(--text); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus { outline: none; box-shadow: var(--focus); border-radius: 10px; }
+
+    .container {
+      width: min(1100px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 240px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .navlink {
+      padding: 8px 10px;
+      border-radius: 10px;
+      color: var(--muted);
+    }
+    .navlink:hover { color: var(--text); text-decoration: none; background: rgba(255,255,255,0.06); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 14px;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.6px;
+      line-height: 1.1;
+    }
+
+    .subtitle {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn:hover { text-decoration: none; background: rgba(255,255,255,0.10); }
+    .btn.primary {
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .btn.primary:hover { background: rgba(255,255,255,0.18); }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .kpi {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      height: 100%;
+    }
+    .kpi .card {
+      background: rgba(0,0,0,0.18);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+    .kpi .label { color: var(--muted); font-size: 12px; margin: 0 0 6px; }
+    .kpi .value { font-size: 22px; font-weight: 800; margin: 0; letter-spacing: -0.3px; }
+    .kpi .note { color: var(--muted); font-size: 12px; margin: 6px 0 0; }
+
+    section {
+      margin-top: 16px;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -0.2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .bullets {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .bullets li { margin: 8px 0; }
+
+    .callout {
+      border: 1px solid rgba(253, 230, 138, 0.25);
+      background: rgba(253, 230, 138, 0.08);
+      border-radius: 16px;
+      padding: 14px 16px;
+      color: var(--text);
+    }
+    .callout small { color: var(--muted); display: block; margin-top: 6px; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .chip {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 16px 0;
+    }
+
+    footer {
+      margin-top: 20px;
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 16px;
+    }
+
+    .disclaimer {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* Accessibility: skip link */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 10px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      border-radius: 12px;
+      color: var(--text);
+      z-index: 999;
+    }
+    .skip-link:focus { left: 16px; }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .kpi { grid-template-columns: 1fr 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      nav { justify-content: flex-start; }
+    }
+    @media (max-width: 520px) {
+      .kpi { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .cta-row { gap: 8px; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <div class="container">
+    <header>
+      <div class="brand" aria-label="Site identity">
+        <div class="logo" aria-hidden="true">AA</div>
+        <div>
+          <div style="font-weight: 800; letter-spacing: -0.2px;">Autism Advisor</div>
+          <div style="color: var(--muted); font-size: 12px;">Conrad Challenge 2026 · Innovation Stage</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a class="navlink" href="#problem">Problem</a>
+        <a class="navlink" href="#solution">Solution</a>
+        <a class="navlink" href="#traction">Traction</a>
+        <a class="navlink" href="#team">Team</a>
+        <a class="navlink" href="#trust">Trust</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-label="Hero section">
+        <div class="panel">
+          <h1>Advocate-level clarity for special education documents.</h1>
+          <p class="subtitle">
+            Autism Advisor is an AI-powered iOS app that turns complex IEPs and special education plans into clear,
+            actionable, state-grounded insights—so families can understand goals, track progress, and ask better questions.
+          </p>
+
+          <div class="cta-row" role="group" aria-label="Primary actions">
+            <a class="btn primary" href="https://placeholder.example/video" target="_blank" rel="noopener">
+              Watch Innovation Video
+            </a>
+            <a class="btn" href="https://placeholder.example/appstore" target="_blank" rel="noopener">
+              View on the App Store
+            </a>
+            <a class="btn" href="https://placeholder.example/references.pdf" target="_blank" rel="noopener">
+              References (PDF)
+            </a>
+          </div>
+
+          <div class="pill" aria-label="Key facts">
+            <span><strong>Built for families</strong> navigating IEPs</span>
+            <span>·</span>
+            <span><strong>Multilingual</strong> (English / Spanish / Korean)</span>
+            <span>·</span>
+            <span><strong>State-grounded</strong> analysis via knowledge graphs</span>
+          </div>
+
+          <p class="disclaimer">
+            Note: This website is a public overview for Conrad Challenge judges and the public. No sensitive or identifying student information is shared.
+          </p>
+        </div>
+
+        <div class="panel" aria-label="Quick traction metrics">
+          <div class="kpi">
+            <div class="card">
+              <p class="label">Pilot families</p>
+              <p class="value">10</p>
+              <p class="note">Orange County (initial testing)</p>
+            </div>
+            <div class="card">
+              <p class="label">Product status</p>
+              <p class="value">Live</p>
+              <p class="note">Published iOS App Store app</p>
+            </div>
+            <div class="card">
+              <p class="label">Core output</p>
+              <p class="value">Summaries</p>
+              <p class="note">Goals, services, accommodations</p>
+            </div>
+            <div class="card">
+              <p class="label">Who it helps</p>
+              <p class="value">Families</p>
+              <p class="note">Advocates, counselors, clinicians</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="problem" class="panel" aria-label="Problem section">
+        <h2>The problem</h2>
+        <div class="grid">
+          <div>
+            <p style="color: var(--muted); margin: 0;">
+              Special education documents are often long, technical, and emotionally loaded. Families are expected to
+              interpret legal language, assessment data, and goal progress—usually without training, time, or support.
+            </p>
+            <ul class="bullets">
+              <li>IEPs commonly span dozens of pages with specialized terminology and compliance requirements.</li>
+              <li>Families with fewer resources may face a “two-tier system” where expert help is expensive and unevenly distributed.</li>
+              <li>Immigrant families can face an additional barrier when documents and meetings are English-first.</li>
+            </ul>
+          </div>
+          <div class="callout" role="note" aria-label="Founding story">
+            <strong>Why we built Autism Advisor</strong><br />
+            When our aunt spent <strong>$1,500</strong> on an education advocate just to understand our cousin’s
+            100-page education plan, we knew technology could democratize advocate-level support.
+            <small>This story is shared with family permission. We do not share any identifying student information.</small>
+          </div>
+        </div>
+      </section>
+
+      <section id="solution" class="panel" aria-label="Solution section">
+        <h2>The solution</h2>
+        <div class="two-col">
+          <div>
+            <p style="color: var(--muted); margin: 0;">
+              Autism Advisor combines generative AI with proprietary, state-specific knowledge graphs to produce
+              understandable, actionable summaries—without relying on generic “best guesses.”
+            </p>
+
+            <div class="divider"></div>
+
+            <h3 style="margin: 0 0 8px; font-size: 16px;">How it works (high level)</h3>
+            <ul class="bullets">
+              <li><strong>Upload</strong> a special education plan (IEP/PDF).</li>
+              <li><strong>Extract</strong> structured text with Apple PDFKit (preserves formatting and sections).</li>
+              <li><strong>Analyze</strong> with an AI engine (LLM + state-specific legal knowledge graphs).</li>
+              <li><strong>Deliver</strong> visual summaries, progress insights, and plain-language Q&amp;A.</li>
+            </ul>
+
+            <div class="chips" aria-label="Key technologies">
+              <span class="chip">PDFKit</span>
+              <span class="chip">LLM (placeholder)</span>
+              <span class="chip">State knowledge graphs</span>
+              <span class="chip">Secure backend (placeholder)</span>
+            </div>
+          </div>
+
+          <div>
+            <h3 style="margin: 0 0 8px; font-size: 16px;">What users get</h3>
+            <ul class="bullets">
+              <li><strong>Visual summaries</strong> of strengths, needs, goals, and services.</li>
+              <li><strong>Progress analysis</strong> to spot gaps between goals and performance.</li>
+              <li><strong>Plain-language assistant</strong> for questions like “What accommodations should I request?”</li>
+              <li><strong>Accessibility-first UX</strong> with speech-to-text and text-to-speech support.</li>
+              <li><strong>Multilingual support</strong> for families who need guidance beyond English.</li>
+            </ul>
+
+            <div class="callout" role="note" aria-label="Differentiation note">
+              <strong>What makes this different</strong><br />
+              Generic AI can summarize. Autism Advisor is designed to be <strong>state-grounded</strong> so families receive
+              accurate, context-aware information aligned to local requirements.
+              <small>This is an informational support tool and does not provide legal advice.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="traction" class="panel" aria-label="Traction section">
+        <h2>Traction &amp; validation</h2>
+        <div class="grid">
+          <div>
+            <ul class="bullets">
+              <li><strong>Piloted</strong> with 10 families across Orange County (using publicly available redacted documents for privacy).</li>
+              <li><strong>Published</strong> on the iOS App Store (after strengthening privacy and account management flows).</li>
+              <li><strong>Validated</strong> with feedback from caregivers and professionals in the autism ecosystem.</li>
+            </ul>
+            <p class="disclaimer">
+              We do not store or publish identifiable student data. Demonstrations use redacted or sample documents.
+            </p>
+          </div>
+          <div>
+            <h3 style="margin: 0 0 8px; font-size: 16px;">What’s next</h3>
+            <ul class="bullets">
+              <li>Expand state coverage and continue improving state-specific grounding.</li>
+              <li>Scale multilingual support to additional languages as we grow nationally.</li>
+              <li>Develop a web experience for use during meetings and professional workflows.</li>
+              <li>Pursue pilots and partnerships with districts, clinics, and advocacy organizations.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="team" class="panel" aria-label="Team section">
+        <h2>Team</h2>
+        <div class="grid">
+          <div>
+            <p style="color: var(--muted); margin: 0;">
+              Autism Advisor is built by two sisters who share a passion for solving human problems through technology.
+              We have collaborated on multiple projects together, combining complementary skills to create meaningful solutions.
+            </p>
+            <div class="divider"></div>
+            <ul class="bullets">
+              <li><strong>RS</strong> — marketing, customer outreach, planning, field testing, and accessibility-focused UX.</li>
+              <li><strong>DS</strong> — technical architecture, AI integration, backend configuration, and knowledge representation systems.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="callout" role="note" aria-label="Contact callout">
+              <strong>Contact</strong><br />
+              Email: <a href="mailto:placeholder@example.com">placeholder@example.com</a><br />
+              Social: <a href="https://placeholder.example/social" target="_blank" rel="noopener">placeholder.example/social</a>
+              <small>Replace these placeholders with public contact links you are comfortable sharing.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="trust" class="panel" aria-label="Trust and privacy section">
+        <h2>Trust, privacy, and responsible use</h2>
+        <div class="grid">
+          <div>
+            <ul class="bullets">
+              <li><strong>Privacy-first design:</strong> avoid unnecessary storage; use secure authentication and encrypted transfer.</li>
+              <li><strong>Public-safe content:</strong> no identifying student data is shared on this site.</li>
+              <li><strong>Informational support:</strong> Autism Advisor does not provide legal advice and is designed to complement professionals.</li>
+            </ul>
+          </div>
+          <div>
+            <div class="callout" role="note" aria-label="Disclaimer">
+              <strong>Disclaimer</strong><br />
+              Autism Advisor provides informational summaries and decision-support to help families understand special education documentation.
+              It is not a substitute for legal counsel, licensed advocates, or professional clinical advice.
+              <small>Always consult qualified professionals for legal, educational, or medical decisions.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer aria-label="Footer">
+        <div>
+          <strong>Autism Advisor</strong> · Conrad Challenge 2026 · Innovation Stage
+        </div>
+        <div>
+          <a href="#main">Back to top</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
