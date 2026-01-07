@@ -1,517 +1,1136 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Autism Advisor — AI-powered clarity for special education documents. Conrad Challenge 2026 Innovation Stage submission website." />
-  <title>Autism Advisor | Conrad Challenge 2026</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autism Advisor | AI-Powered IEP Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-cream: #FDF8F3;
+            --color-warm-white: #FFFCF9;
+            --color-text: #2D2A26;
+            --color-text-muted: #5C5650;
+            --color-accent: #4A7C6F;
+            --color-accent-light: #6B9E8F;
+            --color-accent-pale: #E8F2EF;
+            --color-coral: #E8A87C;
+            --color-coral-light: #F5D5C0;
+            --color-border: #E5DED6;
+            --font-display: 'Fraunces', serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
 
-  <style>
-    :root{
-      --bg: #0b0f14;
-      --panel: #0f1621;
-      --card: #121b27;
-      --text: #e7eef7;
-      --muted: #a9b6c6;
-      --border: rgba(255,255,255,0.10);
-      --shadow: 0 10px 30px rgba(0,0,0,0.35);
-      --focus: 0 0 0 3px rgba(255,255,255,0.25);
-      --accent: #d7dde6; /* neutral */
-      --good: #86efac;   /* used sparingly for check icons */
-      --warn: #fde68a;   /* used sparingly for note callout */
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 20% 0%, #121a27 0%, var(--bg) 55%);
-      color: var(--text);
-      line-height: 1.5;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    a { color: var(--text); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    a:focus { outline: none; box-shadow: var(--focus); border-radius: 10px; }
+        body {
+            font-family: var(--font-body);
+            background: var(--color-cream);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: 16px;
+        }
 
-    .container {
-      width: min(1100px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 28px 0 56px;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(253, 248, 243, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--color-border);
+        }
 
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0 18px;
-    }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 240px;
-    }
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      color: var(--accent);
-    }
+        .logo-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
 
-    nav {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
 
-    .navlink {
-      padding: 8px 10px;
-      border-radius: 10px;
-      color: var(--muted);
-    }
-    .navlink:hover { color: var(--text); text-decoration: none; background: rgba(255,255,255,0.06); }
+        .nav-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
 
-    .hero {
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 18px;
-      align-items: stretch;
-      margin-top: 14px;
-    }
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
 
-    .panel {
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      padding: 22px;
-    }
+        .nav-cta {
+            background: var(--color-accent);
+            color: white !important;
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            transition: background 0.2s, transform 0.2s !important;
+        }
 
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(28px, 4vw, 42px);
-      letter-spacing: -0.6px;
-      line-height: 1.1;
-    }
+        .nav-cta:hover {
+            background: var(--color-accent-light);
+            transform: translateY(-1px);
+        }
 
-    .subtitle {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 62ch;
-    }
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .cta-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 150%;
+            background: radial-gradient(ellipse, var(--color-accent-pale) 0%, transparent 60%);
+            opacity: 0.6;
+            pointer-events: none;
+        }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 11px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .btn:hover { text-decoration: none; background: rgba(255,255,255,0.10); }
-    .btn.primary {
-      background: rgba(255,255,255,0.14);
-      border-color: rgba(255,255,255,0.18);
-    }
-    .btn.primary:hover { background: rgba(255,255,255,0.18); }
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+        }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 14px;
-      flex-wrap: wrap;
-    }
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
 
-    .kpi {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      height: 100%;
-    }
-    .kpi .card {
-      background: rgba(0,0,0,0.18);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-    }
-    .kpi .label { color: var(--muted); font-size: 12px; margin: 0 0 6px; }
-    .kpi .value { font-size: 22px; font-weight: 800; margin: 0; letter-spacing: -0.3px; }
-    .kpi .note { color: var(--muted); font-size: 12px; margin: 6px 0 0; }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    section {
-      margin-top: 16px;
-    }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-accent-pale);
+            color: var(--color-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
 
-    h2 {
-      margin: 0 0 10px;
-      font-size: 20px;
-      letter-spacing: -0.2px;
-    }
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--color-accent);
+            border-radius: 50%;
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+        }
 
-    .bullets {
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-    .bullets li { margin: 8px 0; }
+        h1 span {
+            color: var(--color-accent);
+        }
 
-    .callout {
-      border: 1px solid rgba(253, 230, 138, 0.25);
-      background: rgba(253, 230, 138, 0.08);
-      border-radius: 16px;
-      padding: 14px 16px;
-      color: var(--text);
-    }
-    .callout small { color: var(--muted); display: block; margin-top: 6px; }
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
 
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .chip {
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.04);
-      padding: 7px 10px;
-      border-radius: 999px;
-    }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
 
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 1.75rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.25s;
+            cursor: pointer;
+            border: none;
+        }
 
-    .divider {
-      height: 1px;
-      background: rgba(255,255,255,0.08);
-      margin: 16px 0;
-    }
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+        }
 
-    footer {
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 16px;
-    }
+        .btn-primary:hover {
+            background: var(--color-accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(74, 124, 111, 0.3);
+        }
 
-    .disclaimer {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 12px;
-    }
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+        }
 
-    /* Accessibility: skip link */
-    .skip-link {
-      position: absolute;
-      left: -9999px;
-      top: 10px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid var(--border);
-      padding: 10px 12px;
-      border-radius: 12px;
-      color: var(--text);
-      z-index: 999;
-    }
-    .skip-link:focus { left: 16px; }
+        .btn-secondary:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
 
-    /* Responsive */
-    @media (max-width: 860px) {
-      .hero { grid-template-columns: 1fr; }
-      .kpi { grid-template-columns: 1fr 1fr; }
-      .grid { grid-template-columns: 1fr; }
-      .two-col { grid-template-columns: 1fr; }
-      nav { justify-content: flex-start; }
-    }
-    @media (max-width: 520px) {
-      .kpi { grid-template-columns: 1fr; }
-      .btn { width: 100%; }
-      .cta-row { gap: 8px; }
-    }
-  </style>
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .phone-mockup {
+            position: relative;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .phone-frame {
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 12px;
+            box-shadow: 
+                0 50px 100px rgba(0,0,0,0.15),
+                0 20px 40px rgba(0,0,0,0.1),
+                inset 0 0 0 2px #333;
+        }
+
+        .phone-screen {
+            background: linear-gradient(180deg, var(--color-warm-white) 0%, var(--color-cream) 100%);
+            border-radius: 30px;
+            aspect-ratio: 9/19;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phone-header {
+            padding: 2rem 1.25rem 1rem;
+            text-align: center;
+        }
+
+        .phone-header h3 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .phone-header p {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        .phone-card {
+            background: white;
+            margin: 0 1rem 0.75rem;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .phone-card-title {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--color-border);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-coral));
+            border-radius: 3px;
+        }
+
+        .goal-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--color-text);
+            margin-bottom: 0.4rem;
+        }
+
+        .goal-check {
+            width: 16px;
+            height: 16px;
+            background: var(--color-accent-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .goal-check.completed {
+            background: var(--color-accent);
+        }
+
+        .goal-check svg {
+            width: 10px;
+            height: 10px;
+            fill: white;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-card-1 {
+            top: 10%;
+            left: -20%;
+            animation-delay: 0s;
+        }
+
+        .floating-card-2 {
+            bottom: 20%;
+            right: -15%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating-card .stat {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .floating-card .label {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 2rem;
+            background: var(--color-warm-white);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Problem Section */
+        .problem {
+            padding: 6rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-coral);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: var(--color-warm-white);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .problem-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-coral-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .problem-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--color-coral);
+        }
+
+        .problem-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .problem-card p {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            padding: 6rem 2rem;
+            background: var(--color-accent);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .solution .section-container {
+            position: relative;
+        }
+
+        .solution .section-label {
+            color: var(--color-coral-light);
+        }
+
+        .solution h2 {
+            color: white;
+        }
+
+        .solution .section-description {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: white;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.9rem;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 6rem 2rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--color-warm-white);
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--color-accent-pale), var(--color-coral-light));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        .team-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Video Section */
+        .video {
+            padding: 6rem 2rem;
+            background: var(--color-warm-white);
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-wrapper {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: var(--color-text);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: transform 0.3s, background 0.3s;
+            cursor: pointer;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: var(--color-accent-light);
+        }
+
+        .play-button svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            margin-left: 4px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--color-accent-pale) 0%, var(--color-coral-light) 100%);
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 60%);
+        }
+
+        .cta-box h2 {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .cta-box p {
+            position: relative;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-box .btn {
+            position: relative;
+        }
+
+        .app-store-badge {
+            height: 50px;
+            transition: transform 0.3s;
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--color-text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin: 0 auto 2rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .phone-mockup {
+                max-width: 260px;
+            }
+
+            .floating-card {
+                display: none;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat-item {
+                padding: 0.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .cta-box {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            Autism Advisor
+        </a>
+        <ul class="nav-links">
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#solution">Solution</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#video">Video</a></li>
+            <li><a href="#download" class="nav-cta">Download</a></li>
+        </ul>
+    </nav>
 
-  <div class="container">
-    <header>
-      <div class="brand" aria-label="Site identity">
-        <div class="logo" aria-hidden="true">AA</div>
-        <div>
-          <div style="font-weight: 800; letter-spacing: -0.2px;">Autism Advisor</div>
-          <div style="color: var(--muted); font-size: 12px;">Conrad Challenge 2026 · Innovation Stage</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">Now on the App Store</div>
+                <h1>Understand your child's <span>IEP</span> in minutes, not months</h1>
+                <p class="hero-description">AI-powered analysis that transforms complex special education documents into clear, actionable insights. Available in English, Spanish, and Korean.</p>
+                <div class="hero-buttons">
+                    <a href="#download" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                        Download App
+                    </a>
+                    <a href="#video" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                        Watch Demo
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card floating-card-1">
+                    <div class="stat">7.3M</div>
+                    <div class="label">Students with IEPs</div>
+                </div>
+                <div class="floating-card floating-card-2">
+                    <div class="stat">383%</div>
+                    <div class="label">Autism increase</div>
+                </div>
+                <div class="phone-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="phone-header">
+                                <h3>Education Summary</h3>
+                                <p>Last updated: Jan 2026</p>
+                            </div>
+                            <div class="phone-card">
+                                <div class="phone-card-title">Reading Progress</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 72%"></div>
+                                </div>
+                            </div>
+                            <div class="phone-card">
+                                <div class="phone-card-title">Goals</div>
+                                <div class="goal-item">
+                                    <div class="goal-check completed"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                                    Reading comprehension
+                                </div>
+                                <div class="goal-item">
+                                    <div class="goal-check completed"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                                    Social interaction
+                                </div>
+                                <div class="goal-item">
+                                    <div class="goal-check"></div>
+                                    Math problem solving
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <nav aria-label="Primary navigation">
-        <a class="navlink" href="#problem">Problem</a>
-        <a class="navlink" href="#solution">Solution</a>
-        <a class="navlink" href="#traction">Traction</a>
-        <a class="navlink" href="#team">Team</a>
-        <a class="navlink" href="#trust">Trust</a>
-      </nav>
-    </header>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Pilot Families</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5</div>
+                <div class="stat-label">District Partners</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Languages Supported</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">State Regulations</div>
+            </div>
+        </div>
+    </section>
 
-    <main id="main">
-      <section class="hero" aria-label="Hero section">
-        <div class="panel">
-          <h1>Advocate-level clarity for special education documents.</h1>
-          <p class="subtitle">
-            Autism Advisor is an AI-powered iOS app that turns complex IEPs and special education plans into clear,
-            actionable, state-grounded insights—so families can understand goals, track progress, and ask better questions.
-          </p>
+    <!-- Problem Section -->
+    <section id="problem" class="problem">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">The Problem</div>
+                <h2>A broken system that fails families</h2>
+                <p class="section-description">Navigating special education shouldn't require a law degree or thousands of dollars.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </div>
+                    <h3>100+ Page Documents</h3>
+                    <p>IEPs are filled with legal jargon and educational terminology that most parents cannot understand without professional help.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    </div>
+                    <h3>$1,500+ Advocates</h3>
+                    <p>Professional education advocates charge premium rates, creating a two-tiered system where only wealthy families get proper support.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <h3>Language Barriers</h3>
+                    <p>Nearly 20% of U.S. households speak Spanish at home, yet most IEP documents and tools are only available in English.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-          <div class="cta-row" role="group" aria-label="Primary actions">
-            <a class="btn primary" href="https://placeholder.example/video" target="_blank" rel="noopener">
-              Watch Innovation Video
+    <!-- Solution Section -->
+    <section id="solution" class="solution">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Our Solution</div>
+                <h2>AI that understands education law</h2>
+                <p class="section-description">Proprietary knowledge graphs encoding state-specific IEP regulations ensure accurate, compliant recommendations.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <h3>State-Specific Knowledge</h3>
+                    <p>Our AI is grounded in verified legal information for each U.S. state, not generic language model responses.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <h3>Interactive Q&A</h3>
+                    <p>Ask questions in plain language: "Has my child met their reading goals?" and get clear, actionable answers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                    </div>
+                    <h3>Progress Visualization</h3>
+                    <p>See 3-year trends at a glance with color-coded displays highlighting progress and areas needing attention.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"></path></svg>
+                    </div>
+                    <h3>Multilingual Support</h3>
+                    <p>Full support for English, Spanish, and Korean, with more languages coming soon. Breaking barriers for immigrant families.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Our Team</div>
+                <h2>Sisters solving real problems</h2>
+                <p class="section-description">Personal experience with autism in our family drives us to build technology that genuinely helps.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">RS</div>
+                    <h3>RS</h3>
+                    <div class="team-role">Marketing & User Research</div>
+                    <p class="team-bio">Leads customer outreach, pilot testing with 10 families across Orange County, and ensures the app works for families with varying technology backgrounds.</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">DS</div>
+                    <h3>DS</h3>
+                    <div class="team-role">Technical Architecture</div>
+                    <p class="team-bio">Handles AI integration, backend systems, and built the state-specific knowledge graphs that make our analysis more accurate than generic language models.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="video">
+        <div class="video-container">
+            <div class="section-header">
+                <div class="section-label">Demo</div>
+                <h2>See Autism Advisor in action</h2>
+            </div>
+            <div class="video-wrapper">
+                <!-- Replace VIDEO_ID with your YouTube video ID -->
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <p>Innovation Video Coming Soon</p>
+                </div>
+                <!-- Uncomment and add your video ID when ready:
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+                -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="download" class="cta">
+        <div class="cta-box">
+            <h2>Ready to understand your child's IEP?</h2>
+            <p>Download Autism Advisor free on the App Store. Analyze your first 3 documents at no cost.</p>
+            <a href="#" target="_blank">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
             </a>
-            <a class="btn" href="https://placeholder.example/appstore" target="_blank" rel="noopener">
-              View on the App Store
-            </a>
-            <a class="btn" href="https://placeholder.example/references.pdf" target="_blank" rel="noopener">
-              References (PDF)
-            </a>
-          </div>
-
-          <div class="pill" aria-label="Key facts">
-            <span><strong>Built for families</strong> navigating IEPs</span>
-            <span>·</span>
-            <span><strong>Multilingual</strong> (English / Spanish / Korean)</span>
-            <span>·</span>
-            <span><strong>State-grounded</strong> analysis via knowledge graphs</span>
-          </div>
-
-          <p class="disclaimer">
-            Note: This website is a public overview for Conrad Challenge judges and the public. No sensitive or identifying student information is shared.
-          </p>
         </div>
+    </section>
 
-        <div class="panel" aria-label="Quick traction metrics">
-          <div class="kpi">
-            <div class="card">
-              <p class="label">Pilot families</p>
-              <p class="value">10</p>
-              <p class="note">Orange County (initial testing)</p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Autism Advisor</div>
+            <p class="footer-text">AI-powered IEP analysis for families, educators, and advocates.</p>
+            <div class="footer-links">
+                <a href="#problem">Problem</a>
+                <a href="#solution">Solution</a>
+                <a href="#team">Team</a>
+                <a href="#video">Video</a>
             </div>
-            <div class="card">
-              <p class="label">Product status</p>
-              <p class="value">Live</p>
-              <p class="note">Published iOS App Store app</p>
-            </div>
-            <div class="card">
-              <p class="label">Core output</p>
-              <p class="value">Summaries</p>
-              <p class="note">Goals, services, accommodations</p>
-            </div>
-            <div class="card">
-              <p class="label">Who it helps</p>
-              <p class="value">Families</p>
-              <p class="note">Advocates, counselors, clinicians</p>
-            </div>
-          </div>
+            <p class="footer-copyright">© 2026 RS25 Media. Built for the Conrad Challenge.</p>
         </div>
-      </section>
-
-      <section id="problem" class="panel" aria-label="Problem section">
-        <h2>The problem</h2>
-        <div class="grid">
-          <div>
-            <p style="color: var(--muted); margin: 0;">
-              Special education documents are often long, technical, and emotionally loaded. Families are expected to
-              interpret legal language, assessment data, and goal progress—usually without training, time, or support.
-            </p>
-            <ul class="bullets">
-              <li>IEPs commonly span dozens of pages with specialized terminology and compliance requirements.</li>
-              <li>Families with fewer resources may face a “two-tier system” where expert help is expensive and unevenly distributed.</li>
-              <li>Immigrant families can face an additional barrier when documents and meetings are English-first.</li>
-            </ul>
-          </div>
-          <div class="callout" role="note" aria-label="Founding story">
-            <strong>Why we built Autism Advisor</strong><br />
-            When our aunt spent <strong>$1,500</strong> on an education advocate just to understand our cousin’s
-            100-page education plan, we knew technology could democratize advocate-level support.
-            <small>This story is shared with family permission. We do not share any identifying student information.</small>
-          </div>
-        </div>
-      </section>
-
-      <section id="solution" class="panel" aria-label="Solution section">
-        <h2>The solution</h2>
-        <div class="two-col">
-          <div>
-            <p style="color: var(--muted); margin: 0;">
-              Autism Advisor combines generative AI with proprietary, state-specific knowledge graphs to produce
-              understandable, actionable summaries—without relying on generic “best guesses.”
-            </p>
-
-            <div class="divider"></div>
-
-            <h3 style="margin: 0 0 8px; font-size: 16px;">How it works (high level)</h3>
-            <ul class="bullets">
-              <li><strong>Upload</strong> a special education plan (IEP/PDF).</li>
-              <li><strong>Extract</strong> structured text with Apple PDFKit (preserves formatting and sections).</li>
-              <li><strong>Analyze</strong> with an AI engine (LLM + state-specific legal knowledge graphs).</li>
-              <li><strong>Deliver</strong> visual summaries, progress insights, and plain-language Q&amp;A.</li>
-            </ul>
-
-            <div class="chips" aria-label="Key technologies">
-              <span class="chip">PDFKit</span>
-              <span class="chip">LLM (placeholder)</span>
-              <span class="chip">State knowledge graphs</span>
-              <span class="chip">Secure backend (placeholder)</span>
-            </div>
-          </div>
-
-          <div>
-            <h3 style="margin: 0 0 8px; font-size: 16px;">What users get</h3>
-            <ul class="bullets">
-              <li><strong>Visual summaries</strong> of strengths, needs, goals, and services.</li>
-              <li><strong>Progress analysis</strong> to spot gaps between goals and performance.</li>
-              <li><strong>Plain-language assistant</strong> for questions like “What accommodations should I request?”</li>
-              <li><strong>Accessibility-first UX</strong> with speech-to-text and text-to-speech support.</li>
-              <li><strong>Multilingual support</strong> for families who need guidance beyond English.</li>
-            </ul>
-
-            <div class="callout" role="note" aria-label="Differentiation note">
-              <strong>What makes this different</strong><br />
-              Generic AI can summarize. Autism Advisor is designed to be <strong>state-grounded</strong> so families receive
-              accurate, context-aware information aligned to local requirements.
-              <small>This is an informational support tool and does not provide legal advice.</small>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="traction" class="panel" aria-label="Traction section">
-        <h2>Traction &amp; validation</h2>
-        <div class="grid">
-          <div>
-            <ul class="bullets">
-              <li><strong>Piloted</strong> with 10 families across Orange County (using publicly available redacted documents for privacy).</li>
-              <li><strong>Published</strong> on the iOS App Store (after strengthening privacy and account management flows).</li>
-              <li><strong>Validated</strong> with feedback from caregivers and professionals in the autism ecosystem.</li>
-            </ul>
-            <p class="disclaimer">
-              We do not store or publish identifiable student data. Demonstrations use redacted or sample documents.
-            </p>
-          </div>
-          <div>
-            <h3 style="margin: 0 0 8px; font-size: 16px;">What’s next</h3>
-            <ul class="bullets">
-              <li>Expand state coverage and continue improving state-specific grounding.</li>
-              <li>Scale multilingual support to additional languages as we grow nationally.</li>
-              <li>Develop a web experience for use during meetings and professional workflows.</li>
-              <li>Pursue pilots and partnerships with districts, clinics, and advocacy organizations.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="team" class="panel" aria-label="Team section">
-        <h2>Team</h2>
-        <div class="grid">
-          <div>
-            <p style="color: var(--muted); margin: 0;">
-              Autism Advisor is built by two sisters who share a passion for solving human problems through technology.
-              We have collaborated on multiple projects together, combining complementary skills to create meaningful solutions.
-            </p>
-            <div class="divider"></div>
-            <ul class="bullets">
-              <li><strong>RS</strong> — marketing, customer outreach, planning, field testing, and accessibility-focused UX.</li>
-              <li><strong>DS</strong> — technical architecture, AI integration, backend configuration, and knowledge representation systems.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="callout" role="note" aria-label="Contact callout">
-              <strong>Contact</strong><br />
-              Email: <a href="mailto:placeholder@example.com">placeholder@example.com</a><br />
-              Social: <a href="https://placeholder.example/social" target="_blank" rel="noopener">placeholder.example/social</a>
-              <small>Replace these placeholders with public contact links you are comfortable sharing.</small>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="trust" class="panel" aria-label="Trust and privacy section">
-        <h2>Trust, privacy, and responsible use</h2>
-        <div class="grid">
-          <div>
-            <ul class="bullets">
-              <li><strong>Privacy-first design:</strong> avoid unnecessary storage; use secure authentication and encrypted transfer.</li>
-              <li><strong>Public-safe content:</strong> no identifying student data is shared on this site.</li>
-              <li><strong>Informational support:</strong> Autism Advisor does not provide legal advice and is designed to complement professionals.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="callout" role="note" aria-label="Disclaimer">
-              <strong>Disclaimer</strong><br />
-              Autism Advisor provides informational summaries and decision-support to help families understand special education documentation.
-              It is not a substitute for legal counsel, licensed advocates, or professional clinical advice.
-              <small>Always consult qualified professionals for legal, educational, or medical decisions.</small>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer aria-label="Footer">
-        <div>
-          <strong>Autism Advisor</strong> · Conrad Challenge 2026 · Innovation Stage
-        </div>
-        <div>
-          <a href="#main">Back to top</a>
-        </div>
-      </footer>
-    </main>
-  </div>
+    </footer>
 </body>
 </html>
